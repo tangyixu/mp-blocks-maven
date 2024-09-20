@@ -67,8 +67,8 @@ public class Padded implements AsciiBlock {
     this.pad = new String(new char[] {ch});
     this.halign = horiz;
     this.valign = vert;
-    this.width = paddedWidth;
-    this.height = paddedHeight;
+    this.width = paddedWidth < this.block.width() ? this.block.width() : paddedWidth;
+    this.height = paddedHeight < this.block.height() ? this.block.height() : paddedHeight;
   } // Padded(AsciiBlock, char, HAlignment, VAlignment, int, int)
 
   // +---------+-----------------------------------------------------------
@@ -85,8 +85,31 @@ public class Padded implements AsciiBlock {
    * @exception Exception
    *   If the row is invalid.
    */
-  public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+  public String row(int i) throws Exception { 
+    
+    int left = 0;
+    if(this.halign == HAlignment.CENTER) { 
+      left = (this.width() - this.block.width()) / 2;
+    } else if (this.halign == HAlignment.RIGHT) {
+      left = this.width() - this.block.width();
+    }
+    int right = this.width() - left - this.block.width();
+
+    int top = 0; 
+    if(this.valign == VAlignment.CENTER) { 
+      top = (this.height() - this.block.height()) / 2;
+    } else if (this.valign == VAlignment.BOTTOM) { 
+      top = this.height() - this.block.height();
+    }
+
+    if(i < top){ 
+      return this.pad.repeat(this.width());
+    } else if(top <= i && i < top + this.block.height()) { 
+      return this.pad.repeat(left) + this.block.row(i - top) + this.pad.repeat(right);
+    } else { 
+      return this.pad.repeat(this.width());
+    }
+
   } // row(int)
 
   /**
@@ -95,7 +118,7 @@ public class Padded implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return this.height;
   } // height()
 
   /**
@@ -104,7 +127,7 @@ public class Padded implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return this.width; 
   } // width()
 
   /**
