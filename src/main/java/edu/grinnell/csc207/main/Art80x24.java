@@ -8,6 +8,7 @@ import edu.grinnell.csc207.blocks.Padded;
 import edu.grinnell.csc207.blocks.Rect;
 import edu.grinnell.csc207.blocks.Surrounded;
 import edu.grinnell.csc207.blocks.VAlignment;
+import edu.grinnell.csc207.blocks.*;
 
 import java.io.PrintWriter;
 
@@ -33,12 +34,14 @@ public class Art80x24 {
     AsciiBlock line = new Line("HI");
     Surrounded test = new Surrounded(line, 'a');
     AsciiBlock boxed = new Boxed(line);
+    Grid test2 = new Grid(boxed, 3, 2);
     AsciiBlock padded = new Padded(boxed, '*', HAlignment.CENTER, VAlignment.CENTER, 10, 9);
 
     // AsciiBlock.print(pen, art);
     pen.println("<------------------------->");
     AsciiBlock.print(pen, padded);
     AsciiBlock.print(pen, test);
+    AsciiBlock.print(pen, test2);
     pen.close();
   } // main(String[])
 } // class Art80x24
