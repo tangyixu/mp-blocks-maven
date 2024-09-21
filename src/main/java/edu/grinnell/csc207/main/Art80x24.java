@@ -42,6 +42,8 @@ public class Art80x24 {
     AsciiBlock.print(pen, padded);
     AsciiBlock.print(pen, test);
     AsciiBlock.print(pen, test2);
+
+    System.out.println("AEGALEGLAKEH");
     pen.close();
   } // main(String[])
 } // class Art80x24
