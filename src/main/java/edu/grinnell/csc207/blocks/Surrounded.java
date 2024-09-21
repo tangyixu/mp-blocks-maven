@@ -4,7 +4,7 @@ package edu.grinnell.csc207.blocks;
  * A text block surrounded by a single letter.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Harrison Tiffany Nicole
  */
 public class Surrounded implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -54,7 +54,11 @@ public class Surrounded implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    if( 0 < i && i < this.height()-1) { 
+      return this.surroundChar + this.contents.row(i - 1) + this.surroundChar;
+    } else {
+      return this.surroundChar.repeat(this.width());
+    }
   } // row(int)
 
   /**
@@ -63,7 +67,7 @@ public class Surrounded implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return 2 + this.contents.height();
   } // height()
 
   /**
@@ -72,7 +76,7 @@ public class Surrounded implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return 2 + this.contents.width();  
   } // width()
 
   /**
@@ -84,7 +88,7 @@ public class Surrounded implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and
    *    false otherwise.
    */
-  public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+  public boolean eqv(AsciiBlock other) { //STUB
+    return false;       
   } // eqv(AsciiBlock)
 } // class Surrounded
