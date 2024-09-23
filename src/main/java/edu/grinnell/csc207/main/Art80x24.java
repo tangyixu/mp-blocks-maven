@@ -1,13 +1,6 @@
 package edu.grinnell.csc207.main;
 
 import edu.grinnell.csc207.blocks.AsciiBlock;
-import edu.grinnell.csc207.blocks.Boxed;
-import edu.grinnell.csc207.blocks.HAlignment;
-import edu.grinnell.csc207.blocks.Line;
-import edu.grinnell.csc207.blocks.Padded;
-import edu.grinnell.csc207.blocks.Rect;
-import edu.grinnell.csc207.blocks.Surrounded;
-import edu.grinnell.csc207.blocks.VAlignment;
 import edu.grinnell.csc207.blocks.*;
 
 import java.io.PrintWriter;
@@ -30,19 +23,9 @@ public class Art80x24 {
    */
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.out, true);
-    // AsciiBlock art = new Rect('^', 80, 24);
-    AsciiBlock line = new Line("HI");
-    AsciiBlock boxed = new Boxed(line);
-    HFlip hflip = new HFlip(boxed);
-    HFlip hflip2 = new HFlip(boxed);
+    AsciiBlock art = new Rect('^', 80, 24);
 
-    // AsciiBlock.print(pen, art);
-    pen.println("<------------------------->");
-    AsciiBlock.print(pen, boxed);
-    AsciiBlock.print(pen, hflip);
-    AsciiBlock.print(pen, hflip2);
-    pen.println(hflip.eqv(hflip2));
-    pen.println(hflip.eqv(boxed));
+    AsciiBlock.print(pen, art);
 
     pen.close();
   } // main(String[])
