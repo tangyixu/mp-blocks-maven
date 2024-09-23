@@ -4,7 +4,7 @@ package edu.grinnell.csc207.blocks;
  * A padded ASCII block.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Harrison Zhu
  */
 public class Padded implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -140,6 +140,24 @@ public class Padded implements AsciiBlock {
    *    false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return false;       // STUB
+    return other instanceof Padded && this.eqv((Padded) other);
+  } // eqv(AsciiBlock)
+
+  /**
+   * Determine if another block is structurally equivalent to this block.
+   *
+   * @param other
+   *   The block to compare to this block.
+   *
+   * @return true if the two blocks are structurally equivalent and
+   *    false otherwise.
+   */
+  public boolean eqv(Padded other) {
+    return other.width() == this.width() &&
+            other.height() == this.height() &&
+            other.halign == this.halign &&
+            other.valign == this.valign &&
+            other.pad.equals(this.pad) &&
+            other.block.eqv(this.block);
   } // eqv(AsciiBlock)
 } // class Padded
