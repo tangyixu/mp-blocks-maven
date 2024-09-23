@@ -10,6 +10,14 @@ import org.junit.jupiter.api.Test;
 
 public class TestEqv {
     @Test
+    public void testAsciiEqv() throws Exception { 
+        AsciiBlock line = new Line("HI");
+        AsciiBlock line1 = new Line("HI");
+
+        assertEquals(true, AsciiBlock.eqv(line, line1));
+    }
+
+    @Test
     public void testPadded() throws Exception { 
         AsciiBlock rect = new Rect('x', 2, 3);
         AsciiBlock boxed = new Boxed(rect);
@@ -40,5 +48,18 @@ public class TestEqv {
         AsciiBlock box1 = new Boxed(line);
 
         assertEquals(true, box.eqv(box1));
+    }
+
+    @Test
+    public void testHComp() throws Exception { 
+        AsciiBlock[] li = {
+            new Rect('x', 2, 3),
+            new Rect('x', 5, 3),
+            new Rect('x', 7, 2)
+        };
+        AsciiBlock hcomp = new HComp(VAlignment.CENTER, li);
+        AsciiBlock hcomp1 = new HComp(VAlignment.CENTER, li);
+
+        assertEquals(true, hcomp.eqv(hcomp1));
     }
 }
