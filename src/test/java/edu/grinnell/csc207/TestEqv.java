@@ -41,6 +41,22 @@ public class TestEqv {
     }
 
     @Test
+
+    public void testLines() throws Exception { 
+        String[] strs = {
+            "lalala",
+            "hahaha",
+            "lilili",
+            "bruh"
+        };
+
+        AsciiBlock a = new Lines(strs);
+        AsciiBlock b = new Lines(strs);
+
+        assertEquals(true, a.eqv(b));
+    }
+
+    @Test
     public void testBoxed() throws Exception { 
         AsciiBlock line = new Line("HI");
         AsciiBlock line1 = new Line("HI");
