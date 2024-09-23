@@ -32,16 +32,18 @@ public class Art80x24 {
     PrintWriter pen = new PrintWriter(System.out, true);
     // AsciiBlock art = new Rect('^', 80, 24);
     AsciiBlock line = new Line("HI");
-    Surrounded test = new Surrounded(line, 'a');
     AsciiBlock boxed = new Boxed(line);
-    Grid test2 = new Grid(boxed, 3, 2);
-    AsciiBlock padded = new Padded(boxed, '*', HAlignment.CENTER, VAlignment.CENTER, 10, 9);
+    HFlip hflip = new HFlip(boxed);
+    HFlip hflip2 = new HFlip(boxed);
 
     // AsciiBlock.print(pen, art);
     pen.println("<------------------------->");
-    AsciiBlock.print(pen, padded);
-    AsciiBlock.print(pen, test);
-    AsciiBlock.print(pen, test2);
+    AsciiBlock.print(pen, boxed);
+    AsciiBlock.print(pen, hflip);
+    AsciiBlock.print(pen, hflip2);
+    pen.println(hflip.eqv(hflip2));
+    pen.println(hflip.eqv(boxed));
+
     pen.close();
   } // main(String[])
 } // class Art80x24
