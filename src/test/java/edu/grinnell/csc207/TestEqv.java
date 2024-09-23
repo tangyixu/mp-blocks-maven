@@ -41,7 +41,6 @@ public class TestEqv {
     }
 
     @Test
-
     public void testLines() throws Exception { 
         String[] strs = {
             "lalala",
