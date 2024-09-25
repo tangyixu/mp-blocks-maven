@@ -22,10 +22,10 @@ public class Circle implements AsciiBlock {
   public String row(int i){
     
     String result = "";
-    double center = (diameter-1)/2.0;
+    double center = (diameter - 1)/2.0;
     for(double x = 0; x < diameter; x++)
-    {
-      if (Math.pow((center-x),2) + Math.pow((i - center),2)  <= Math.pow(center,2))
+    { 
+      if (Math.pow((center-x),2) + Math.pow((i - center),2) <= Math.pow(diameter/2.0,2))
       {
        result += unitchar;
       }
@@ -44,9 +44,10 @@ public class Circle implements AsciiBlock {
   }
 
   public boolean eqv(AsciiBlock other){
-   return false;
+    return other.width() == this.width() &&
+           other.height() == this.height();
+           //other.unitchar.equals(this.unitchar) &&    
+           //other.diameter == this.diameter;  
   }
-  
-
 
 }
