@@ -72,16 +72,21 @@ public class VComp implements AsciiBlock {
    *   if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
-    return "";  // STUB
+    int topHeight = this.blocks[0].height();
+    if (i < topHeight)
+     return this.blocks[0].row(i % topHeight);
+    else 
+     return this.blocks[0].row(i % this.blocks[1].height());
   } // row(int)
 
   /**
    * Determine how many rows are in the block.
    *
+   * 
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return 1;
   } // height()
 
   /**
