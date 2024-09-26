@@ -24,7 +24,6 @@ public class Art80x24 {
     PrintWriter pen = new PrintWriter(System.out, true);
     AsciiBlock art = new Rect('^', 80, 24);
     Circle test = new Circle('C',3);
-
     AsciiBlock.print(pen, new Surrounded(test, 'x'));
 
     pen.close();

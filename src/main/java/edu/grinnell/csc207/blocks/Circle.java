@@ -43,11 +43,17 @@ public class Circle implements AsciiBlock {
     return this.diameter;
   }
 
+
+
   public boolean eqv(AsciiBlock other){
-    return other.width() == this.width() &&
+    return other instanceof Circle &&
+           other.width() == this.width() &&
            other.height() == this.height();
            //other.unitchar.equals(this.unitchar) &&    
            //other.diameter == this.diameter;  
+
+  
+
   }
 
 }

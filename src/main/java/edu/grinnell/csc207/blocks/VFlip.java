@@ -4,7 +4,7 @@ package edu.grinnell.csc207.blocks;
  * A vertically flipped ASCII block.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Tiffany Tang
  */
 public class VFlip implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -18,6 +18,7 @@ public class VFlip implements AsciiBlock {
 
   // +--------------+------------------------------------------------------
   // | Constructors |
+ 
   // +--------------+
 
   /**
@@ -45,7 +46,8 @@ public class VFlip implements AsciiBlock {
    *   If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    int maxRow = this.block.height() - 1;
+      return this.block.row(maxRow - i);
   } // row(int)
 
   /**
@@ -54,7 +56,7 @@ public class VFlip implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    return this.block.height();
   } // height()
 
   /**
@@ -63,7 +65,7 @@ public class VFlip implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    return this.block.width();
   } // width()
 
   /**
