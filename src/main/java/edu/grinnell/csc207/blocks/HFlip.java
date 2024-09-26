@@ -79,6 +79,6 @@ public class HFlip implements AsciiBlock {
    *    false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return other instanceof HFlip && ((HFlip) other).block.equals(this.block);
+    return other instanceof HFlip && ((HFlip) other).block.eqv(this.block);
   } // eqv(AsciiBlock)
 } // class HFlip
