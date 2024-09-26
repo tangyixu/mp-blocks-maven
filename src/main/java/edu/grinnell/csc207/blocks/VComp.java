@@ -103,7 +103,7 @@ public class VComp implements AsciiBlock {
    *         false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return other instanceof VComp && this.eqv((AsciiBlock) other);
+    return other instanceof VComp && this.eqv((VComp) other);
   } // eqv(AsciiBlock)
 
   /**
@@ -115,12 +115,23 @@ public class VComp implements AsciiBlock {
    * @return true if the two blocks are structurally equivalent and
    *         false otherwise.
    */
-  public boolean eqv(VComp other) {
-    for (int i = 0; i < this.blocks.length; ++i) {
-      if (!this.blocks[i].eqv(other.blocks[i])) {
-        return false;
+  public boolean eqv(VComp other) { //STUB, might want to clean this code
+    /*
+     * Three conditions to check
+     * 1. Same alignment
+     * 2. Same blocks.length
+     * 3. All items in blocks array eqv each other
+     */
+    if(this.align == other.align && this.blocks.length == other.blocks.length){
+      for(int i = 0; i < this.blocks.length; ++i) { 
+        if(!this.blocks[i].eqv(other.blocks[i])) { 
+          return false;
+        }
       }
+    } else { 
+      return false; 
     }
-    return this.align == other.align;
+
+    return true;
   } // eqv(HComp)
 } // class VComp
