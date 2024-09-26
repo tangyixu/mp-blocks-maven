@@ -1,13 +1,13 @@
 package edu.grinnell.csc207.blocks;
 
 import java.util.Arrays;
+import edu.grinnell.csc207.blocks.*;
 
 /**
  * The vertical composition of blocks.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
- * @author Your Name Here
+ * @author Harrison Zhu, Tiffany Tang
  */
 public class VComp implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -72,8 +72,30 @@ public class VComp implements AsciiBlock {
    *                      if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
-    return ""; // STUB
-  } // row(int)
+    int index = 0;
+    int maxRow = this.blocks[index].height() - 1;
+    while (i > maxRow)
+    {
+     maxRow += this.blocks[++index].height();
+
+    }
+    Padded helper = new Padded(this.blocks[index],
+                               ' ',  this.align, 
+                               VAlignment.TOP, 
+                               this.blocks[index].width(), 
+                               this.blocks[index].height());
+    int left = 0;
+    if(this.align == HAlignment.CENTER) { 
+      left = (this.width() - this.blocks[index].width()) / 2;
+    } else if (this.align == HAlignment.RIGHT) {
+      left = this.width() - this.blocks[index].width(); 
+    }
+    int right = this.width() - left - this.blocks[index].width();
+
+    return helper.pad.repeat(left) + 
+           this.blocks[index].row(i - maxRow +  this.blocks[index].height() - 1) +
+           helper.pad.repeat(right);
+    }
 
   /**
    * Determine how many rows are in the block.
@@ -81,7 +103,12 @@ public class VComp implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0; // STUB
+    int result = 0;
+    for (AsciiBlock element :this.blocks)
+    {
+      result += element.height();
+    }
+    return result;
   } // height()
 
   /**
@@ -90,7 +117,13 @@ public class VComp implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0; // STUB
+    int maxWidth = 0;
+    for (AsciiBlock element :this.blocks)
+    {
+      if(element.width()>maxWidth)
+       {maxWidth = element.width();}
+    }
+    return maxWidth;
   } // width()
 
   /**

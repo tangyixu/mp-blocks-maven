@@ -1,6 +1,5 @@
 package edu.grinnell.csc207.main;
 
-import edu.grinnell.csc207.blocks.AsciiBlock;
 import edu.grinnell.csc207.blocks.*;
 
 import java.io.PrintWriter;
@@ -24,8 +23,8 @@ public class Art80x24 {
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.out, true);
     AsciiBlock art = new Rect('^', 80, 24);
-
-    AsciiBlock.print(pen, art);
+    Circle test = new Circle('C',3);
+    AsciiBlock.print(pen, new Surrounded(test, 'x'));
 
     pen.close();
   } // main(String[])
