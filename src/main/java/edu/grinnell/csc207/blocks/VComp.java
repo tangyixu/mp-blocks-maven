@@ -32,25 +32,25 @@ public class VComp implements AsciiBlock {
    * Build a vertical composition of two blocks.
    *
    * @param alignment
-   *   The way in which the blocks should be aligned.
+   *                    The way in which the blocks should be aligned.
    * @param topBlock
-   *   The block on the top.
+   *                    The block on the top.
    * @param bottomBlock
-   *   The block on the bottom.
+   *                    The block on the bottom.
    */
   public VComp(HAlignment alignment, AsciiBlock topBlock,
       AsciiBlock bottomBlock) {
     this.align = alignment;
-    this.blocks = new AsciiBlock[] {topBlock, bottomBlock};
+    this.blocks = new AsciiBlock[] { topBlock, bottomBlock };
   } // VComp(HAlignment, AsciiBlock, AsciiBlock)
 
   /**
    * Build a vertical composition of multiple blocks.
    *
    * @param alignment
-   *   The alignment of the blocks.
+   *                        The alignment of the blocks.
    * @param blocksToCompose
-   *   The blocks we will be composing.
+   *                        The blocks we will be composing.
    */
   public VComp(HAlignment alignment, AsciiBlock[] blocksToCompose) {
     this.align = alignment;
@@ -69,12 +69,9 @@ public class VComp implements AsciiBlock {
    * @return row i.
    *
    * @exception Exception
-   *   if i is outside the range of valid rows.
+   *                      if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
-    
-    
-  
     int index = 0;
     int maxRow = this.blocks[index].height() - 1;
     while (i > maxRow)
@@ -99,7 +96,6 @@ public class VComp implements AsciiBlock {
            this.blocks[index].row(i - maxRow +  this.blocks[index].height() - 1) +
            helper.pad.repeat(right);
     }
-
 
   /**
    * Determine how many rows are in the block.
@@ -134,30 +130,41 @@ public class VComp implements AsciiBlock {
    * Determine if another block is structurally equivalent to this block.
    *
    * @param other
-   *   The block to compare to this block.
+   *              The block to compare to this block.
    *
    * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   *         false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
-    return other instanceof VComp && this.eqv((AsciiBlock) other);
+    return other instanceof VComp && this.eqv((VComp) other);
   } // eqv(AsciiBlock)
 
   /**
    * Determine if another block is structurally equivalent to this block.
    *
    * @param other
-   *   The block to compare to this block.
+   *              The block to compare to this block.
    *
    * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   *         false otherwise.
    */
-  public boolean eqv(VComp other) {
-    for(int i = 0; i < this.blocks.length; ++i) { 
-      if(!this.blocks[i].eqv(other.blocks[i])) { 
-        return false;
+  public boolean eqv(VComp other) { //STUB, might want to clean this code
+    /*
+     * Three conditions to check
+     * 1. Same alignment
+     * 2. Same blocks.length
+     * 3. All items in blocks array eqv each other
+     */
+    if(this.align == other.align && this.blocks.length == other.blocks.length){
+      for(int i = 0; i < this.blocks.length; ++i) { 
+        if(!this.blocks[i].eqv(other.blocks[i])) { 
+          return false;
+        }
       }
+    } else { 
+      return false; 
     }
-    return this.align == other.align;
+
+    return true;
   } // eqv(HComp)
 } // class VComp
