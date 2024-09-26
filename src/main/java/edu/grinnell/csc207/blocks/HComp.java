@@ -6,7 +6,7 @@ import java.util.Arrays;
  * The horizontal composition of blocks.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Nicole Gorrell
  */
 public class HComp implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -71,7 +71,14 @@ public class HComp implements AsciiBlock {
    *   if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
-    return "";  // STUB
+    String str = "";
+    for (int r = 0; r < this.blocks.length; r++) {
+      Padded spaced = new Padded(this.blocks[r], ' ', HAlignment.RIGHT, this.align, 
+                      this.blocks[r].width(), this.height());
+      str = str.concat(spaced.row(i));
+    }
+
+    return str;
   } // row(int)
 
   /**
@@ -80,7 +87,15 @@ public class HComp implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0;   // STUB
+    int max = 0;
+
+    for(int i = 0; i < this.blocks.length; i++) {
+      if (this.blocks[i].height() > max) {
+        max = this.blocks[i].height();
+      }
+    }
+
+    return max;
   } // height()
 
   /**
@@ -89,7 +104,13 @@ public class HComp implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0;   // STUB
+    int sum = 0;
+
+    for(int i = 0; i < this.blocks.length; i++) {
+      sum += this.blocks[i].width();
+    }
+
+    return sum;
   } // width()
 
   /**
