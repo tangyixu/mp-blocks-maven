@@ -7,6 +7,7 @@ import java.util.Arrays;
  *
  * @author Samuel A. Rebelsky
  * @author Nicole Gorrell
+ * @author Harrison Zhu
  */
 public class HComp implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -76,7 +77,7 @@ public class HComp implements AsciiBlock {
       Padded spaced = new Padded(this.blocks[r], ' ', HAlignment.RIGHT, this.align, 
                       this.blocks[r].width(), this.height());
       str = str.concat(spaced.row(i));
-    }
+    } // for
 
     return str;
   } // row(int)
@@ -92,8 +93,8 @@ public class HComp implements AsciiBlock {
     for(int i = 0; i < this.blocks.length; i++) {
       if (this.blocks[i].height() > max) {
         max = this.blocks[i].height();
-      }
-    }
+      } // if
+    } // for
 
     return max;
   } // height()
@@ -108,7 +109,7 @@ public class HComp implements AsciiBlock {
 
     for(int i = 0; i < this.blocks.length; i++) {
       sum += this.blocks[i].width();
-    }
+    } // for
 
     return sum;
   } // width()
@@ -139,7 +140,7 @@ public class HComp implements AsciiBlock {
     for(int i = 0; i < this.blocks.length; ++i) { 
       if(!this.blocks[i].eqv(other.blocks[i])) { 
         return false;
-      }
+      } // if
     }
     return this.align == other.align;
   } // eqv(HComp)
