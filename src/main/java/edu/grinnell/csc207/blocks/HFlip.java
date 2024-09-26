@@ -1,7 +1,5 @@
 package edu.grinnell.csc207.blocks;
 
-import java.lang.StringBuilder;
-
 /**
  * A horizontally flipped ASCII block.
  *
@@ -13,9 +11,7 @@ public class HFlip implements AsciiBlock {
   // | Fields |
   // +--------+
 
-  /**
-   * The original block.
-   */
+  /** The original block. */
   AsciiBlock block;
 
   // +--------------+------------------------------------------------------
@@ -25,8 +21,7 @@ public class HFlip implements AsciiBlock {
   /**
    * Build a new block with the specified contents.
    *
-   * @param original
-   *   The original block.
+   * @param original The original block.
    */
   public HFlip(AsciiBlock original) {
     this.block = original;
@@ -40,11 +35,8 @@ public class HFlip implements AsciiBlock {
    * Get one row from the block.
    *
    * @param i the number of the row
-   *
    * @return row i.
-   *
-   * @exception Exception
-   *   If the row is invalid.
+   * @exception Exception If the row is invalid.
    */
   public String row(int i) throws Exception {
     StringBuilder strBuilder = new StringBuilder(this.block.row(i));
@@ -72,11 +64,8 @@ public class HFlip implements AsciiBlock {
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
-   *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
     return other instanceof HFlip && ((HFlip) other).block.eqv(this.block);

@@ -1,7 +1,6 @@
 package edu.grinnell.csc207.main;
 
 import edu.grinnell.csc207.blocks.*;
-
 import java.io.PrintWriter;
 
 /**
@@ -14,16 +13,13 @@ public class Art80x24 {
   /**
    * Create the artwork.
    *
-   * @param args
-   *   Command-line arguments (currently ignored).
-   *
-   * @exception Exception
-   *   If something goes wrong with one of the underlying classes.
+   * @param args Command-line arguments (currently ignored).
+   * @exception Exception If something goes wrong with one of the underlying classes.
    */
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.out, true);
     AsciiBlock art = new Rect('^', 80, 24);
-    Circle test = new Circle('C',3);
+    Circle test = new Circle('C', 3);
     AsciiBlock.print(pen, new Surrounded(test, 'x'));
 
     pen.close();

@@ -1,7 +1,6 @@
 package edu.grinnell.csc207.experiments;
 
 import edu.grinnell.csc207.blocks.*;
-
 import java.io.PrintWriter;
 
 /**
@@ -15,8 +14,7 @@ public class Blocks {
   /**
    * Print a separator.
    *
-   * @param pen
-   *   What we use to print the separator.
+   * @param pen What we use to print the separator.
    */
   static void separator(PrintWriter pen) {
     pen.printf("\n%s\n\n", "=".repeat(60));
@@ -25,12 +23,9 @@ public class Blocks {
   /**
    * Print a single AsciiBlock with a separator and a caption.
    *
-   * @param pen
-   *   The PrintWriter to use for printing.
-   * @param caption
-   *   The caption to print.
-   * @param block
-   *   The block to print.
+   * @param pen The PrintWriter to use for printing.
+   * @param caption The caption to print.
+   * @param block The block to print.
    */
   static void figure(PrintWriter pen, String caption, AsciiBlock block) {
     separator(pen);
@@ -43,8 +38,7 @@ public class Blocks {
   /**
    * Run the experiments.
    *
-   * @param args
-   *   The command-line parameters (ignored).
+   * @param args The command-line parameters (ignored).
    */
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.out, true);
@@ -92,18 +86,20 @@ public class Blocks {
 
     separator(pen);
     pen.println("Multi-line boxes");
-    figure(pen, "Using an array",
-        new Lines(new String[] {"this", "and", "that", "or", "whatever"}));
-    figure(pen, "Using a multi-line string",
-        new Lines("""
-                  multi-line strings
-                  were
-                  introduced
-                  in
-                  Java 13
-                  """));
-    figure(pen, "Using a string with newlines",
-        new Lines("alpha\nbeta\ngamma\ndelta\nepsilon"));
+    figure(
+        pen, "Using an array", new Lines(new String[] {"this", "and", "that", "or", "whatever"}));
+    figure(
+        pen,
+        "Using a multi-line string",
+        new Lines(
+            """
+									multi-line strings
+									were
+									introduced
+									in
+									Java 13
+									"""));
+    figure(pen, "Using a string with newlines", new Lines("alpha\nbeta\ngamma\ndelta\nepsilon"));
 
     separator(pen);
     pen.println("Fun with horizontal composition");
@@ -113,12 +109,9 @@ public class Blocks {
     figure(pen, "a", a);
     figure(pen, "b", b);
     figure(pen, "c", c);
-    figure(pen, "Top composition",
-        new HComp(VAlignment.TOP, new AsciiBlock[] {a, b, c}));
-    figure(pen, "Center composition",
-        new HComp(VAlignment.CENTER, new AsciiBlock[] {a, b, c}));
-    figure(pen, "Bottom composition",
-        new HComp(VAlignment.BOTTOM, new AsciiBlock[] {a, b, c}));
+    figure(pen, "Top composition", new HComp(VAlignment.TOP, new AsciiBlock[] {a, b, c}));
+    figure(pen, "Center composition", new HComp(VAlignment.CENTER, new AsciiBlock[] {a, b, c}));
+    figure(pen, "Bottom composition", new HComp(VAlignment.BOTTOM, new AsciiBlock[] {a, b, c}));
 
     separator(pen);
     pen.println("Fun with vertical composition");
@@ -130,17 +123,23 @@ public class Blocks {
     figure(pen, "v7", v7);
     figure(pen, "v11", v11);
     figure(pen, "v19", v19);
-    figure(pen, "Left composition",
-        new VComp(HAlignment.LEFT, new AsciiBlock[] {v1, v7, v11, v19}));
-    figure(pen, "Left composition",
-        new VComp(HAlignment.CENTER, new AsciiBlock[] {v1, v7, v11, v19}));
-    figure(pen, "Left composition",
-        new VComp(HAlignment.RIGHT, new AsciiBlock[] {v1, v7, v11, v19}));
+    figure(
+        pen, "Left composition", new VComp(HAlignment.LEFT, new AsciiBlock[] {v1, v7, v11, v19}));
+    figure(
+        pen, "Left composition", new VComp(HAlignment.CENTER, new AsciiBlock[] {v1, v7, v11, v19}));
+    figure(
+        pen, "Left composition", new VComp(HAlignment.RIGHT, new AsciiBlock[] {v1, v7, v11, v19}));
 
     separator(pen);
     pen.println("Fun with Hflip");
-    figure(pen, "hflip", 
-        new HFlip(new Boxed(new Line("LINE"))));
+    figure(pen, "hflip", new HFlip(new Boxed(new Line("LINE"))));
+
+    separator(pen);
+    Rect a1 = new Rect('A', 4, 2);
+    Rect b1 = new Rect('B', 3, 3);
+    Rect c1 = new Rect('C', 2, 4);
+    AsciiBlock block = new VComp(HAlignment.RIGHT, new AsciiBlock[] {a1, b1, c1});
+    figure(pen, "VComp", block);
 
     pen.close();
   } // main(String[])
