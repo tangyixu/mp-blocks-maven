@@ -1,6 +1,9 @@
 package edu.grinnell.csc207.main;
 
-import edu.grinnell.csc207.blocks.*;
+import edu.grinnell.csc207.blocks.AsciiBlock;
+import edu.grinnell.csc207.blocks.Circle;
+import edu.grinnell.csc207.blocks.Rect;
+import edu.grinnell.csc207.blocks.Surrounded;
 import java.io.PrintWriter;
 
 /**

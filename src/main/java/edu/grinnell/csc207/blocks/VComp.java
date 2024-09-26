@@ -63,7 +63,7 @@ public class VComp implements AsciiBlock {
     while (i > maxRow) {
       maxRow += this.blocks[++index].height();
     } // while
-    
+
     Padded helper =
         new Padded(
             this.blocks[index],
@@ -74,7 +74,7 @@ public class VComp implements AsciiBlock {
             this.blocks[index].height());
 
     return helper.row(i - maxRow + this.blocks[index].height() - 1);
-  }
+  } // row(int)
 
   /**
    * Determine how many rows are in the block.
@@ -85,7 +85,7 @@ public class VComp implements AsciiBlock {
     int result = 0;
     for (AsciiBlock element : this.blocks) {
       result += element.height();
-    }
+    } // for
     return result;
   } // height()
 
@@ -99,8 +99,8 @@ public class VComp implements AsciiBlock {
     for (AsciiBlock element : this.blocks) {
       if (element.width() > maxWidth) {
         maxWidth = element.width();
-      }
-    }
+      } // if
+    } // for
     return maxWidth;
   } // width()
 
@@ -120,22 +120,26 @@ public class VComp implements AsciiBlock {
    * @param other The block to compare to this block.
    * @return true if the two blocks are structurally equivalent and false otherwise.
    */
-  public boolean eqv(VComp other) { // STUB, might want to clean this code
+  public boolean eqv(VComp other) {
     /*
      * Three conditions to check
      * 1. Same alignment
      * 2. Same blocks.length
      * 3. All items in blocks array eqv each other
      */
-    if (this.align == other.align && this.blocks.length == other.blocks.length) {
-      for (int i = 0; i < this.blocks.length; ++i) {
-        if (!this.blocks[i].eqv(other.blocks[i])) {
-          return false;
-        }
-      }
-    } else {
+    if (!(this.align == other.align)) {
       return false;
-    }
+    } // if not same alignment
+
+    if (!(this.blocks.length == other.blocks.length)) {
+      return false;
+    } // if not same length
+
+    for (int i = 0; i < this.blocks.length; ++i) {
+      if (!this.blocks[i].eqv(other.blocks[i])) {
+        return false;
+      } // if blocks not eqv
+    } // for
 
     return true;
   } // eqv(HComp)

@@ -69,7 +69,7 @@ public class HComp implements AsciiBlock {
               this.blocks[r].width(),
               this.height());
       str = str.concat(spaced.row(i));
-    }
+    } // for each block
 
     return str;
   } // row(int)
@@ -85,8 +85,8 @@ public class HComp implements AsciiBlock {
     for (int i = 0; i < this.blocks.length; i++) {
       if (this.blocks[i].height() > max) {
         max = this.blocks[i].height();
-      }
-    }
+      } // if new max
+    } // for
 
     return max;
   } // height()
@@ -101,7 +101,7 @@ public class HComp implements AsciiBlock {
 
     for (int i = 0; i < this.blocks.length; i++) {
       sum += this.blocks[i].width();
-    }
+    } // for
 
     return sum;
   } // width()
@@ -126,8 +126,8 @@ public class HComp implements AsciiBlock {
     for (int i = 0; i < this.blocks.length; ++i) {
       if (!this.blocks[i].eqv(other.blocks[i])) {
         return false;
-      }
-    }
+      } // if not eqv
+    } // for
     return this.align == other.align;
   } // eqv(HComp)
 } // class HComp

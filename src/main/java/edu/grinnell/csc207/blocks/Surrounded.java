@@ -48,7 +48,7 @@ public class Surrounded implements AsciiBlock {
       return this.surroundChar + this.contents.row(i - 1) + this.surroundChar;
     } else {
       return this.surroundChar.repeat(this.width());
-    }
+    } // if
   } // row(int)
 
   /**

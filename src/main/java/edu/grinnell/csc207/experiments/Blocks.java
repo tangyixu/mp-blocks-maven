@@ -1,6 +1,15 @@
 package edu.grinnell.csc207.experiments;
 
-import edu.grinnell.csc207.blocks.*;
+import edu.grinnell.csc207.blocks.AsciiBlock;
+import edu.grinnell.csc207.blocks.Boxed;
+import edu.grinnell.csc207.blocks.HAlignment;
+import edu.grinnell.csc207.blocks.HComp;
+import edu.grinnell.csc207.blocks.HFlip;
+import edu.grinnell.csc207.blocks.Line;
+import edu.grinnell.csc207.blocks.Lines;
+import edu.grinnell.csc207.blocks.Rect;
+import edu.grinnell.csc207.blocks.VAlignment;
+import edu.grinnell.csc207.blocks.VComp;
 import java.io.PrintWriter;
 
 /**
