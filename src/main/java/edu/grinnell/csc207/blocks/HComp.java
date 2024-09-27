@@ -7,6 +7,7 @@ import java.util.Arrays;
  *
  * @author Samuel A. Rebelsky
  * @author Nicole Gorrell
+ * @author Harrison Zhu
  */
 public class HComp implements AsciiBlock {
   // +--------+------------------------------------------------------------

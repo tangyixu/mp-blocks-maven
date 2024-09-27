@@ -150,6 +150,21 @@ public class Blocks {
     AsciiBlock block = new VComp(HAlignment.RIGHT, new AsciiBlock[] {a1, b1, c1});
     figure(pen, "VComp", block);
 
+    separator(pen);
+    pen.println("Fun with Trimmed");
+    //exes
+    figure(pen, "reference", boxedExes);
+    figure(pen, "boxedExes Top Left", new Trimmed(boxedExes, HAlignment.LEFT, VAlignment.TOP, 2, 3));
+    figure(pen, "boxedExes Centered", new Trimmed(boxedExes, HAlignment.CENTER, VAlignment.CENTER, 2, 3));
+    figure(pen, "boxedExes Bottom Right", new Trimmed(boxedExes, HAlignment.RIGHT, VAlignment.BOTTOM, 2, 3));
+    figure(pen, "rectangle", new Trimmed(new Rect('a', 3, 3), HAlignment.LEFT, VAlignment.TOP, 1, 1));
+    figure(pen, "rectangle", new Trimmed(new Rect('a', 6, 4), HAlignment.LEFT, VAlignment.TOP, 1, 2));
+    figure(pen, "exes", new Trimmed(exes, HAlignment.RIGHT, VAlignment.BOTTOM, 1, 2));
+
+    // pen.println(x3);
+
+    //Lines
+
     pen.close();
   } // main(String[])
 } // class Blocks

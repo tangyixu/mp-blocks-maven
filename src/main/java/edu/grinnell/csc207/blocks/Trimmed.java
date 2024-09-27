@@ -4,7 +4,9 @@ package edu.grinnell.csc207.blocks;
  * A trimmed ASCII block.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Nicole
+ * @author Tiffany
+ * @author Harrison
  */
 public class Trimmed implements AsciiBlock {
   // +--------+------------------------------------------------------------
@@ -60,7 +62,34 @@ public class Trimmed implements AsciiBlock {
    * @exception Exception If the row is invalid.
    */
   public String row(int i) throws Exception {
-    throw new Exception("Not yet implemented"); // STUB
+    if(this.height > this.block.height() || this.width > this.block.width()) {
+      throw new Exception("Trim dimensions exceed those of the input block. Try again.");
+    } // if
+
+    int hOffset;
+    int vOffset;
+
+    String result = "";
+
+    if (this.halign == HAlignment.LEFT) {
+      hOffset = 0;
+    } else if (this.halign == HAlignment.CENTER) {
+      hOffset = (this.block.width() - 2) / 2;
+    } else {
+      hOffset = this.block.width() - this.width;
+    } // if...else
+    
+    if (this.valign == VAlignment.TOP) {
+      vOffset = 0;
+    } else if (this.valign == VAlignment.CENTER) {
+      vOffset = (this.block.height() - 2) / 2;
+    } else {
+      vOffset = this.block.height() - this.height;
+    } // if...else
+
+    result = this.block.row(vOffset + i).substring(hOffset, this.width + hOffset);
+
+    return result;
   } // row(int)
 
   /**
@@ -69,7 +98,7 @@ public class Trimmed implements AsciiBlock {
    * @return the number of rows
    */
   public int height() {
-    return 0; // STUB
+    return this.height;
   } // height()
 
   /**
@@ -78,7 +107,7 @@ public class Trimmed implements AsciiBlock {
    * @return the number of columns
    */
   public int width() {
-    return 0; // STUB
+    return this.width;
   } // width()
 
   /**
