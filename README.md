@@ -5,13 +5,14 @@ Explorations with the creation, composition, and mutation of blocks of ASCII tex
 **Authors**
 
 * Samuel A. Rebelsky (starter code).
-* Your Name Here
-* Your name Here
+* Harrison Zhu
+* Tiffang tang
+* Nicole Gorrell
 
 **Notes for the reader**
 
-PLEASE ADD NOTES FOR SOMEONE NOT FAMILIAR WITH THE PROJECT.
+We use AsciiBlock types to create a art using various block types, which is a forest . We also created a new block type called "Circle".
 
 ---
 
-This code may be found at <https://github.com/YOUR_USERNAME/YOU_REPO>. The original project can be found at <https://github.com/Grinnell-CSC207/mp-blocks-maven>.
+This code may be found at <https://github.com/tangyixu/mp-blocks-maven>. The original project can be found at <https://github.com/Grinnell-CSC207/mp-blocks-maven>.
