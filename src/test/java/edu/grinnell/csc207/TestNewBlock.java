@@ -20,11 +20,15 @@ public class TestNewBlock {
     Circle test2 = new Circle('C', 3);
     Circle test3 = new Circle('C', 3);
     Circle test4 = new Circle('X', 3);
+    Empty empt = new Empty();
+    Padded pad = new Padded(test4, ' ', HAlignment.LEFT, VAlignment.TOP, test4.width(), test4.height());
     assertEquals(5, test1.height());
     assertEquals(3, test2.height());
     assertEquals("CCC", test2.row(0));
     assertTrue(test2.eqv(test3));
     assertFalse(test1.eqv(test3));
     assertFalse(test3.eqv(test4));
+    assertFalse(test3.eqv(empt));
+    assertFalse(test4.eqv(pad));
   } // testCircle
 } // class TestNewBlock
