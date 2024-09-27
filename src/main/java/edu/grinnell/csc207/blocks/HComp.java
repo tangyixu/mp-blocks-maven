@@ -14,14 +14,10 @@ public class HComp implements AsciiBlock {
   // | Fields |
   // +--------+
 
-  /**
-   * The blocks.
-   */
+  /** The blocks. */
   AsciiBlock[] blocks;
 
-  /**
-   * How the blocks are aligned.
-   */
+  /** How the blocks are aligned. */
   VAlignment align;
 
   // +--------------+------------------------------------------------------
@@ -31,15 +27,11 @@ public class HComp implements AsciiBlock {
   /**
    * Build a horizontal composition of two blocks.
    *
-   * @param alignment
-   *   The way in which the blocks should be aligned.
-   * @param leftBlock
-   *   The block on the left.
-   * @param rightBlock
-   *   The block on the right.
+   * @param alignment The way in which the blocks should be aligned.
+   * @param leftBlock The block on the left.
+   * @param rightBlock The block on the right.
    */
-  public HComp(VAlignment alignment, AsciiBlock leftBlock,
-      AsciiBlock rightBlock) {
+  public HComp(VAlignment alignment, AsciiBlock leftBlock, AsciiBlock rightBlock) {
     this.align = alignment;
     this.blocks = new AsciiBlock[] {leftBlock, rightBlock};
   } // HComp(VAlignment, AsciiBlock, AsciiBlock)
@@ -47,10 +39,8 @@ public class HComp implements AsciiBlock {
   /**
    * Build a horizontal composition of multiple blocks.
    *
-   * @param alignment
-   *   The alignment of the blocks.
-   * @param blocksToCompose
-   *   The blocks we will be composing.
+   * @param alignment The alignment of the blocks.
+   * @param blocksToCompose The blocks we will be composing.
    */
   public HComp(VAlignment alignment, AsciiBlock[] blocksToCompose) {
     this.align = alignment;
@@ -65,19 +55,22 @@ public class HComp implements AsciiBlock {
    * Get one row from the block.
    *
    * @param i the number of the row
-   *
    * @return row i.
-   *
-   * @exception Exception
-   *   if i is outside the range of valid rows.
+   * @exception Exception if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
     String str = "";
     for (int r = 0; r < this.blocks.length; r++) {
-      Padded spaced = new Padded(this.blocks[r], ' ', HAlignment.RIGHT, this.align, 
-                      this.blocks[r].width(), this.height());
+      Padded spaced =
+          new Padded(
+              this.blocks[r],
+              ' ',
+              HAlignment.RIGHT,
+              this.align,
+              this.blocks[r].width(),
+              this.height());
       str = str.concat(spaced.row(i));
-    } // for
+    } // for each block
 
     return str;
   } // row(int)
@@ -90,10 +83,10 @@ public class HComp implements AsciiBlock {
   public int height() {
     int max = 0;
 
-    for(int i = 0; i < this.blocks.length; i++) {
+    for (int i = 0; i < this.blocks.length; i++) {
       if (this.blocks[i].height() > max) {
         max = this.blocks[i].height();
-      } // if
+      } // if new max
     } // for
 
     return max;
@@ -107,7 +100,7 @@ public class HComp implements AsciiBlock {
   public int width() {
     int sum = 0;
 
-    for(int i = 0; i < this.blocks.length; i++) {
+    for (int i = 0; i < this.blocks.length; i++) {
       sum += this.blocks[i].width();
     } // for
 
@@ -117,11 +110,8 @@ public class HComp implements AsciiBlock {
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
-   *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
     return other instanceof HComp && this.eqv((HComp) other);
@@ -130,18 +120,15 @@ public class HComp implements AsciiBlock {
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
-   *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(HComp other) {
-    for(int i = 0; i < this.blocks.length; ++i) { 
-      if(!this.blocks[i].eqv(other.blocks[i])) { 
+    for (int i = 0; i < this.blocks.length; ++i) {
+      if (!this.blocks[i].eqv(other.blocks[i])) {
         return false;
-      } // if
-    }
+      } // if not eqv
+    } // for
     return this.align == other.align;
   } // eqv(HComp)
 } // class HComp

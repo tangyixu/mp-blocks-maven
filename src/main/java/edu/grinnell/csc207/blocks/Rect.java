@@ -10,14 +10,10 @@ public class Rect implements AsciiBlock {
   // | Fields |
   // +--------+
 
-  /**
-   * One row of the rectangle.
-   */
+  /** One row of the rectangle. */
   String row;
 
-  /**
-   * The height of the rectangle.
-   */
+  /** The height of the rectangle. */
   int height;
 
   // +--------------+------------------------------------------------------
@@ -27,17 +23,11 @@ public class Rect implements AsciiBlock {
   /**
    * Build a rectangle.
    *
-   * @param ch
-   *   The character from which we build the rectangle.
-   *
-   * @param rectWidth
-   *   The width of the rectangle.
-   *
-   * @param rectHeight
-   *   The height of the rectangle.
+   * @param ch The character from which we build the rectangle.
+   * @param rectWidth The width of the rectangle.
+   * @param rectHeight The height of the rectangle.
    */
-  public Rect(char ch, int rectWidth, int rectHeight)
-      throws Exception {
+  public Rect(char ch, int rectWidth, int rectHeight) throws Exception {
     // Sanity check
     if (rectWidth <= 0) {
       throw new Exception("Rectangle width must be positive");
@@ -57,11 +47,8 @@ public class Rect implements AsciiBlock {
    * Get one row from the block.
    *
    * @param i the number of the row
-   *
    * @return row i.
-   *
-   * @exception Exception
-   *   if i is outside the range of valid rows.
+   * @exception Exception if i is outside the range of valid rows.
    */
   public String row(int i) throws Exception {
     if ((i < 0) || (i >= this.height())) {
@@ -91,11 +78,8 @@ public class Rect implements AsciiBlock {
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
-   *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(AsciiBlock other) {
     return other instanceof Rect && this.eqv((Rect) other);
@@ -104,11 +88,8 @@ public class Rect implements AsciiBlock {
   /**
    * Determine if another block is structurally equivalent to this block.
    *
-   * @param other
-   *   The block to compare to this block.
-   *
-   * @return true if the two blocks are structurally equivalent and
-   *    false otherwise.
+   * @param other The block to compare to this block.
+   * @return true if the two blocks are structurally equivalent and false otherwise.
    */
   public boolean eqv(Rect other) {
     return other.row.equals(this.row) && other.height() == this.height();
@@ -118,9 +99,7 @@ public class Rect implements AsciiBlock {
   // | Other methods |
   // +---------------+
 
-  /**
-   * Make the rectangle wider.
-   */
+  /** Make the rectangle wider. */
   public void wider() {
     this.row = this.row + this.row.substring(0, 1);
   } // wider()
@@ -136,9 +115,7 @@ public class Rect implements AsciiBlock {
     } // if
   } // narrower()
 
-  /**
-   * Make the rectangle taller.
-   */
+  /** Make the rectangle taller. */
   public void taller() {
     this.height += 1;
   } // taller()
@@ -153,5 +130,4 @@ public class Rect implements AsciiBlock {
       this.height -= 1;
     } // if
   } // shorter()
-
 } // class Rect
