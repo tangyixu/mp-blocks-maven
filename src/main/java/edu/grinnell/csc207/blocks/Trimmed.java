@@ -86,34 +86,28 @@ public class Trimmed implements AsciiBlock {
       throw new Exception("Trim dimensions exceed those of the input block. Try again.");
     } // if
 
+    int hOffset;
+    int vOffset;
+
     String result = "";
 
-    // if...else block goes through each possible alignment combinations to trim from this.block
-    if (this.halign == HAlignment.LEFT && this.valign == VAlignment.TOP) {
-      result = this.block.row(i).substring(0, this.width);
-    } else if (this.halign == HAlignment.CENTER && this.valign == VAlignment.TOP) {
-      result = this.block.row(i).substring((this.block.width() - 1) / 2, 
-                                             ((this.block.width() - 1) / 2) + 2);
-    } else if (this.halign == HAlignment.RIGHT && this.valign == VAlignment.TOP) {
-      result = this.block.row(i).substring(this.block.width() - this.width, this.block.width()); 
-    } else if (this.halign == HAlignment.LEFT && this.valign == VAlignment.CENTER) {
-      result = this.block.row((this.block.height() - 1) / 2).substring((this.block.width() - 1) / 2, 
-                                                                         ((this.block.width() - 1) / 2) + 1);
-    } else if (this.halign == HAlignment.CENTER && this.valign == VAlignment.CENTER) {
-      result = this.block.row((this.block.height() - 1) / 2).substring((this.block.width() - 1) / 2, 
-                                                                         ((this.block.width() - 1) / 2) + 2);
-    } else if (this.halign == HAlignment.RIGHT && this.valign == VAlignment.CENTER) {
-      result = this.block.row((this.block.height() - 1) / 2).substring(this.block.width() - this.width, this.block.width());
-    } else if (this.halign == HAlignment.LEFT && this.valign == VAlignment.BOTTOM) {
-      result = this.block.row(this.block.height() - this.height).substring(0, this.width);
-    } else if (this.halign == HAlignment.CENTER && this.valign == VAlignment.BOTTOM) {
-      result = this.block.row(this.block.height() - this.height).substring((this.block.width() - 1) / 2, 
-                                                                             ((this.block.width() - 1) / 2) + 2);
-    } else if (this.halign == HAlignment.RIGHT && this.valign == VAlignment.BOTTOM) {
-      result = this.block.row(this.block.height() - this.height).substring(this.block.width() - this.width, this.block.width());
-      //result = result.concat(this.block.row(this.block.height() - 1)); 
-  
+    if (this.halign == HAlignment.LEFT) {
+      hOffset = 0;
+    } else if (this.halign == HAlignment.CENTER) {
+      hOffset = (this.block.width() - 2) / 2;
+    } else {
+      hOffset = this.block.width() - this.width;
     } // if...else
+    
+    if (this.valign == VAlignment.TOP) {
+      vOffset = 0;
+    } else if (this.valign == VAlignment.CENTER) {
+      vOffset = (this.block.height() - 2) / 2;
+    } else {
+      vOffset = this.block.height() - this.height;
+    } // if...else
+
+    result = this.block.row(vOffset + i).substring(hOffset, this.width + hOffset);
 
     return result;
   } // row(int)
