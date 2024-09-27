@@ -3,6 +3,8 @@ package edu.grinnell.csc207.main;
 import edu.grinnell.csc207.blocks.*;
 
 import java.io.PrintWriter;
+import java.lang.Math;
+
 
 /**
  * Create and print an amazing 80x24 ASCII artwork.
@@ -20,20 +22,81 @@ public class Art80x24 {
    * @exception Exception
    *   If something goes wrong with one of the underlying classes.
    */
+
+   //trunk helper function
+   public static AsciiBlock trunk (int width, int height) throws Exception
+   {
+    Rect a = new Rect ('|', width, height);
+    return a;
+   }
+
+   //tree leave helper function
+   public static AsciiBlock leaves (int size) throws Exception{
+     Rect[] combinedleaves = new Rect[size];
+     for(int i = 0;i < size;i++)
+     {
+      int n = i;
+      n += 2;
+      if (i == 0)
+       n = 1;
+      if (n % 2 == 0)
+       n++;
+      combinedleaves[i] = new Rect('*', n, 1);
+     }
+     AsciiBlock leaves = new VComp(HAlignment.CENTER, combinedleaves);
+     return leaves;
+   }
+
+    //tree helper function
+    public static AsciiBlock tree(int leavesize, int trunkwidth, int trunkheight)throws Exception
+    {
+      AsciiBlock[] wholetree = {leaves(leavesize), trunk(trunkwidth,trunkheight)};
+      AsciiBlock tree = new VComp(HAlignment.CENTER, wholetree);
+      return tree;
+    }
+
   public static void main(String[] args) throws Exception {
     PrintWriter pen = new PrintWriter(System.out, true);
-    Circle mountainbase = new Circle('*',11) ;
-    AsciiBlock sky = new Rect(' ', 80, 10); 
+
+    //Make the grass and sky
+    AsciiBlock sky = new Rect(' ', 80, 5); 
     AsciiBlock grass = new Rect('^', 80, 1);
-    //Circle emptyheart = new Circle('+',2);
-    //AsciiBlock linedheart = new Surrounded(emptyheart,'.');
-    Trimmed trimmedbase = new Trimmed(mountainbase,HAlignment.LEFT, VAlignment.TOP, 11, 4);
-    AsciiBlock.print(pen, trimmedbase);
-    //AsciiBlock.print(pen, mountainbase);
+
+    //Make the trees in line
+    AsciiBlock trees = new Rect(' ', 5, 5);;
+    AsciiBlock forest[] = new AsciiBlock[11];
+    for (int n = 0; n < 11; n++)
+    {
+      if ( n % 2 != 0)
+       {
+        forest[n] = new Rect(' ', 5, 5);
+       }
+      else 
+       {
+        int treesize = (int) (Math.random() *10 + 1);
+        int trunkwidth = (int) (Math.random() *10 + 1);
+        if (trunkwidth > treesize)
+        { 
+          int hold = treesize;
+          treesize = trunkwidth;
+          trunkwidth = hold;
+        } 
+        int trunkheight = (int) (Math.random() *10 + 1);
+
+        forest[n] = tree(treesize,trunkwidth, trunkheight);
+      
+       }                
+       AsciiBlock hold = trees;
+       trees = new HComp(VAlignment.BOTTOM,hold, forest[n]);
+    }
+
+    //Final Forest Picture
     AsciiBlock.print(pen, sky);
+    AsciiBlock.print(pen, trees);
     AsciiBlock.print(pen, grass);
     
-
     pen.close();
   } // main(String[])
-} // class Art80x24
+ 
+  
+ }// class  Art80x24
