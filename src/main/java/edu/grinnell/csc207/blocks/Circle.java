@@ -83,9 +83,7 @@ public class Circle implements AsciiBlock {
   public boolean eqv(AsciiBlock other) {
     return other instanceof Circle
         && other.width() == this.width()
-        && other.height() == this.height();
-    // other.unitchar.equals(this.unitchar) &&
-    // other.diameter == this.diameter;
-
+        && other.height() == this.height()
+        && ((Circle)other).unitchar.equals(this.unitchar);
   } // eqv(AsciiBlock)
 } // Circle

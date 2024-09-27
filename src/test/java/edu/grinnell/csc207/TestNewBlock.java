@@ -20,7 +20,7 @@ public class TestNewBlock {
     assertEquals(5, test1.height());
     assertEquals(3, test2.height());
     assertEquals("CCC", test2.row(0));
-    assertEquals(false, test2.eqv(test3));
     assertEquals(true, test2.eqv(test3));
+    assertEquals(false, test1.eqv(test3));
   } // testCircle
 } // class TestNewBlock
