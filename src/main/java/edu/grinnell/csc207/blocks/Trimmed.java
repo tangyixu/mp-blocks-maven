@@ -62,7 +62,7 @@ public class Trimmed implements AsciiBlock {
    * @exception Exception If the row is invalid.
    */
   public String row(int i) throws Exception {
-    if(this.height > this.block.height() || this.width > this.block.width()) {
+    if (this.height > this.block.height() || this.width > this.block.width()) {
       throw new Exception("Trim dimensions exceed those of the input block. Try again.");
     } // if
 
@@ -78,7 +78,7 @@ public class Trimmed implements AsciiBlock {
     } else {
       hOffset = this.block.width() - this.width;
     } // if...else
-    
+
     if (this.valign == VAlignment.TOP) {
       vOffset = 0;
     } else if (this.valign == VAlignment.CENTER) {

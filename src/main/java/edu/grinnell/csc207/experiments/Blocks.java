@@ -8,6 +8,7 @@ import edu.grinnell.csc207.blocks.HFlip;
 import edu.grinnell.csc207.blocks.Line;
 import edu.grinnell.csc207.blocks.Lines;
 import edu.grinnell.csc207.blocks.Rect;
+import edu.grinnell.csc207.blocks.Trimmed;
 import edu.grinnell.csc207.blocks.VAlignment;
 import edu.grinnell.csc207.blocks.VComp;
 import java.io.PrintWriter;
@@ -102,12 +103,12 @@ public class Blocks {
         "Using a multi-line string",
         new Lines(
             """
-									multi-line strings
-									were
-									introduced
-									in
-									Java 13
-									"""));
+            multi-line strings
+            were
+            introduced
+            in
+            Java 13
+            """));
     figure(pen, "Using a string with newlines", new Lines("alpha\nbeta\ngamma\ndelta\nepsilon"));
 
     separator(pen);
@@ -152,18 +153,27 @@ public class Blocks {
 
     separator(pen);
     pen.println("Fun with Trimmed");
-    //exes
+    // exes
     figure(pen, "reference", boxedExes);
-    figure(pen, "boxedExes Top Left", new Trimmed(boxedExes, HAlignment.LEFT, VAlignment.TOP, 2, 3));
-    figure(pen, "boxedExes Centered", new Trimmed(boxedExes, HAlignment.CENTER, VAlignment.CENTER, 2, 3));
-    figure(pen, "boxedExes Bottom Right", new Trimmed(boxedExes, HAlignment.RIGHT, VAlignment.BOTTOM, 2, 3));
-    figure(pen, "rectangle", new Trimmed(new Rect('a', 3, 3), HAlignment.LEFT, VAlignment.TOP, 1, 1));
-    figure(pen, "rectangle", new Trimmed(new Rect('a', 6, 4), HAlignment.LEFT, VAlignment.TOP, 1, 2));
+    figure(
+        pen, "boxedExes Top Left", new Trimmed(boxedExes, HAlignment.LEFT, VAlignment.TOP, 2, 3));
+    figure(
+        pen,
+        "boxedExes Centered",
+        new Trimmed(boxedExes, HAlignment.CENTER, VAlignment.CENTER, 2, 3));
+    figure(
+        pen,
+        "boxedExes Bottom Right",
+        new Trimmed(boxedExes, HAlignment.RIGHT, VAlignment.BOTTOM, 2, 3));
+    figure(
+        pen, "rectangle", new Trimmed(new Rect('a', 3, 3), HAlignment.LEFT, VAlignment.TOP, 1, 1));
+    figure(
+        pen, "rectangle", new Trimmed(new Rect('a', 6, 4), HAlignment.LEFT, VAlignment.TOP, 1, 2));
     figure(pen, "exes", new Trimmed(exes, HAlignment.RIGHT, VAlignment.BOTTOM, 1, 2));
 
     // pen.println(x3);
 
-    //Lines
+    // Lines
 
     pen.close();
   } // main(String[])
