@@ -84,6 +84,6 @@ public class Circle implements AsciiBlock {
     return other instanceof Circle
         && other.width() == this.width()
         && other.height() == this.height()
-        && ((Circle)other).unitchar.equals(this.unitchar);
+        && ((Circle) other).unitchar.equals(this.unitchar);
   } // eqv(AsciiBlock)
 } // Circle
