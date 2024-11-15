@@ -5,15 +5,27 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import edu.grinnell.csc207.blocks.*;
 import org.junit.jupiter.api.Test;
 
+/**
+ * Tests for Eqv.
+ * @author Harrison Zhu
+ */
 public class TestEqv {
+  /**
+   * Simple Eqv between two lines.
+   * @throws Exception
+   */
   @Test
   public void testAsciiEqv() throws Exception {
     AsciiBlock line = new Line("HI");
     AsciiBlock line1 = new Line("HI");
 
     assertEquals(true, AsciiBlock.eqv(line, line1));
-  }
+  } //testAsciiEqv()
 
+  /**
+   * Test Eqv between compositions.
+   * @throws Exception
+   */
   @Test
   public void testPadded() throws Exception {
     AsciiBlock rect = new Rect('x', 2, 3);
@@ -27,16 +39,12 @@ public class TestEqv {
     assertEquals(true, padded.eqv(padded1));
     assertEquals(false, padded1.eqv(padded2));
     assertEquals(true, padded2.eqv(padded3));
-  }
-
-  @Test
-  public void testLine() throws Exception {
-    AsciiBlock line = new Line("HI");
-    AsciiBlock line1 = new Line("HI");
-
-    assertEquals(true, line.eqv(line1));
-  }
-
+  } // testPadded()
+  
+  /**
+   * Test compositions (lines).
+   * @throws Exception
+   */
   @Test
   public void testLines() throws Exception {
     String[] strs = {"lalala", "hahaha", "lilili", "bruh"};
@@ -45,8 +53,12 @@ public class TestEqv {
     AsciiBlock b = new Lines(strs);
 
     assertEquals(true, a.eqv(b));
-  }
+  } //testLines()
 
+  /**
+   * Test Boxed Composition.
+   * @throws Exception
+   */
   @Test
   public void testBoxed() throws Exception {
     AsciiBlock line = new Line("HI");
@@ -55,8 +67,12 @@ public class TestEqv {
     AsciiBlock box1 = new Boxed(line);
 
     assertEquals(true, box.eqv(box1));
-  }
+  } // testBoxed()
 
+  /**
+   * Test Horizontal Composition.
+   * @throws Exception
+   */
   @Test
   public void testHComp() throws Exception {
     AsciiBlock[] li = {new Rect('x', 2, 3), new Rect('x', 5, 3), new Rect('x', 7, 2)};
@@ -64,5 +80,5 @@ public class TestEqv {
     AsciiBlock hcomp1 = new HComp(VAlignment.CENTER, li);
 
     assertEquals(true, hcomp.eqv(hcomp1));
-  }
-}
+  } // testHComp()
+} // testEqv

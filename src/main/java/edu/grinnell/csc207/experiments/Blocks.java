@@ -17,8 +17,9 @@ import java.io.PrintWriter;
  * Experiments with ASCII blocks.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
- * @author Your Name Here
+ * @author Harrison Zhu
+ * @author Nicole Gorrell
+ * @author Tiffany Tang
  */
 public class Blocks {
   /**

@@ -4,7 +4,9 @@ package edu.grinnell.csc207.blocks;
  * A grid of a single text block.
  *
  * @author Samuel A. Rebelsky
- * @author Your Name Here
+ * @author Harrison Zhu
+ * @author Nicole Gorrell
+ * @author Tiffany Tang
  */
 public class Grid implements AsciiBlock {
   // +--------+------------------------------------------------------------
