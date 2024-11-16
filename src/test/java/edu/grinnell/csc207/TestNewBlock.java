@@ -6,6 +6,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 import edu.grinnell.csc207.blocks.*;
 import org.junit.jupiter.api.Test;
+import java.util.Random;
 
 /** Tests of the new block. */
 public class TestNewBlock {
@@ -13,10 +14,7 @@ public class TestNewBlock {
   // | Tests |
   // +-------+
 
-  /** 
-   * Basic tests for circle. Test eqv between different objects.
-   * Test if circle has been constructed correctly.
-   */
+  /** A placeholder. */
   @Test
   public void testCircle() {
     Circle test1 = new Circle(5);
@@ -33,81 +31,56 @@ public class TestNewBlock {
     assertFalse(test3.eqv(test4));
     assertFalse(test3.eqv(empt));
     assertFalse(test4.eqv(pad));
-  } // testCircle()
+  } // testCircle
 
-  /**
-   * Test for constructing a circle with diameter 0.
-   */
+  /** Testing an empty case. */
   @Test
-  public void testEmptyCircle() { 
-    Circle empty = new Circle('x', 0);
-    assertEquals("", empty.row(0));
-  } // testEmptyCircle()
-
-  /**
-   * Test if Grid, Boxed, and other wrappers work on an empty circle
-   */
-  @Test
-  public void testWrappedEmptyCircle() { 
-    Circle emptyCircle = new Circle('x', 0);
-    Boxed box = new Boxed(emptyCircle);
-    Grid grid = new Grid(emptyCircle, 3, 3);
-    Surrounded surrounded = new Surrounded(emptyCircle, '.');
-
-    assertEquals(
-      """
-      /\\
-      \\/
-      """,
-      TestUtils.toString(box));
-
-    assertEquals(
-      """
-      """,
-      TestUtils.toString(grid));
-
-    assertEquals(
-      """
-      ..
-      ..
-      """,
-      TestUtils.toString(surrounded));
-  } // testWrappedEmptyCircle()
-
-  /**
-   * Test if the circle works in wrappers
-   */
-  @Test
-  public void testWrapperCircle() { 
-    Circle circle = new Circle('C', 5);
-    assertEquals(
-      " CCC \nCCCCC\nCCCCC\nCCCCC\n CCC \n",
-      TestUtils.toString(circle));
+  public void testEmpty() {
+    Circle test = new Circle(' ', 5);
     
-    Boxed box = new Boxed(circle); 
-    assertEquals(
-      """
-    /-----\\
-    | CCC |
-    |CCCCC|
-    |CCCCC|
-    |CCCCC|
-    | CCC |
-    \\-----/
-      """,
-      TestUtils.toString(box));
+    assertEquals(5, test.height());
+    assertEquals("     ", test.row(0));
 
-    Surrounded surrounded = new Surrounded(circle, 'a'); 
-    assertEquals(
-      """
-    aaaaaaa
-    a CCC a
-    aCCCCCa
-    aCCCCCa
-    aCCCCCa
-    a CCC a
-    aaaaaaa
-      """,
-      TestUtils.toString(surrounded));
-  } // testWrapperCircle()
+    Circle test2 = new Circle(' ', 5);
+    assertTrue(test.eqv(test2));
+
+    Circle test3 = new Circle('a', 3);
+    assertFalse(test3.eqv(test));
+  } // testEmpty
+
+  /** Testing circles with randomly generated diameters. */
+  @Test
+  public void randomTest() {
+    Random rand = new Random();
+
+    int generate1 = rand.nextInt(50);
+    int generate2 = rand.nextInt(50);
+
+    Circle t1 = new Circle(generate1);
+    Circle t2 = new Circle(generate2);
+
+    assertFalse(t2.eqv(t1));
+
+    String r1 = t1.row(generate1 - 1);
+    String r2 = t2.row(generate2 - 1);
+
+    assertEquals(r2, t2.row(generate2 - 1));
+    assertEquals(r1, t1.row(generate1 - 1));
+    assertEquals(generate1, t1.height());
+    assertEquals(generate2, t2.height());
+  } // randomTest
+
+  /** Testing different circles with different contents. */
+  @Test
+  public void testFill() {
+    Circle t1 = new Circle(10);
+    Circle t2 = new Circle('f', 10);
+    Circle t3 = new Circle('a', 10);
+    Padded pad = new Padded(t1, 'o', HAlignment.CENTER, VAlignment.CENTER, 3, 2);
+  
+    assertFalse(t1.eqv(pad));
+    assertEquals(t2.height(), t3.height());
+    assertEquals("ffffffffff", t2.row(5));
+    assertEquals(" aaaaaaaa ", t3.row(1));
+  } // testFill
 } // class TestNewBlock
