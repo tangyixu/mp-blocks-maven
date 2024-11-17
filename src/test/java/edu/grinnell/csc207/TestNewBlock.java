@@ -14,18 +14,18 @@ public class TestNewBlock {
   // | Tests |
   // +-------+
 
-  /** A placeholder. */
+  /** Testing circles of normal int value as diameters */
   @Test
   public void testCircle() {
     Circle test1 = new Circle(5);
-    Circle test2 = new Circle('C', 3);
-    Circle test3 = new Circle('C', 3);
-    Circle test4 = new Circle('X', 3);
+    Circle test2 = new Circle('C', 8);
+    Circle test3 = new Circle('C', 8);
+    Circle test4 = new Circle('X', 8);
     Empty empt = new Empty();
     Padded pad = new Padded(test4, ' ', HAlignment.LEFT, VAlignment.TOP, test4.width(), test4.height());
     assertEquals(5, test1.height());
-    assertEquals(3, test2.height());
-    assertEquals("CCC", test2.row(0));
+    assertEquals(8, test2.height());
+    assertEquals("CCCCCCCC", test2.row(4));
     assertTrue(test2.eqv(test3));
     assertFalse(test1.eqv(test3));
     assertFalse(test3.eqv(test4));
@@ -83,4 +83,26 @@ public class TestNewBlock {
     assertEquals("ffffffffff", t2.row(5));
     assertEquals(" aaaaaaaa ", t3.row(1));
   } // testFill
+
+  /** Testing building circles with small numbers */
+  @Test
+  public void testSmall() {
+    Circle t1 = new Circle('a',1);
+    Circle t2 = new Circle('b', 2);
+    Circle t3 = new Circle('c', 3);
+    assertFalse(t1.eqv(t2));
+    assertEquals(t2.height() + 1, t3.height());
+    assertEquals("a", t1.row(0));
+    assertEquals("bb", t2.row(0));
+  } // testSmall
+
+  /** Testing building circles with zero */
+  @Test
+  public void testZero() {
+    Circle t1 = new Circle('a',0);
+    Circle t2 = new Circle('a',1);
+    //Empty e1 = new Empty();
+    assertFalse(t1.eqv(t2));
+    assertEquals("",t1.row(0));
+  } // testZero
 } // class TestNewBlock
